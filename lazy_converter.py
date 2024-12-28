@@ -8,8 +8,6 @@ import customtkinter
 from PIL import Image
 from tkinter import messagebox
 
-import dependencies.save_extractor.main as SaveExtractor
-
 saves = []
 
 # Event to signal when SaveExtractor is complete
@@ -41,9 +39,14 @@ def check_progress(progressbar):
         window.after(1000, check_progress, progressbar)
 
 def convert_save_files(progressbar):
+
     saveFolders = list_folders_in_directory("./saves")
+
     if not saveFolders:
-        print("No folders")
+        print("No save files found")
+        
+        window.quit()
+        exit()
         return
     
     print(saveFolders)
@@ -76,9 +79,18 @@ def update_combobox(saveList):
         button.place(relx=0.5, rely=0.8, anchor="center") 
 
 def run_save_extractor():
-    SaveExtractor.main()
-    print("SaveExtractor complete")
-    save_extractor_done.set()  # Signal that SaveExtractor is done
+    command = ["python", "./dependencies/save_extractor/main.py", f"./"]
+
+    try:
+        subprocess.run(command, check=True)
+        print("Command executed successfully")
+        save_extractor_done.set() 
+
+    except subprocess.CalledProcessError as e:
+        print(f"Error executing command: {e}")
+        return None
+    
+     # Signal that SaveExtractor is done
 
 def check_for_zip_files():
     if not find_zip_files("./"):
@@ -188,6 +200,8 @@ def convert_sav_JSON(saveName):
         return None
 
 def convert_JSON_sav(saveName):
+    saveName = saveName[saveName.find("-") + 2:]
+    print(saveName)
     print(f"Converting JSON file to .sav: {saveName}")
     command = ["python", "./dependencies/save_tools/convert.py", f"./saves/{saveName}/Level/01.sav.json", "--output", f"./saves/{saveName}/Level.sav"]
     try:
