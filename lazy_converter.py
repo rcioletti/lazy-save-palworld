@@ -24,11 +24,11 @@ def get_save_game_pass(button):
 
     # Start the background task for zip file checking and save extraction
     threading.Thread(target=check_for_zip_files, daemon=True).start()
+
     threading.Thread(target=check_progress, args=(progressbar,), daemon=True).start()
 
 def check_progress(progressbar):
     # Check if SaveExtractor is done
-    print("checking")
     if save_extractor_done.is_set():
         progressbar.set(0.5)  # Update progressbar when extraction is complete
         # After extraction is done, trigger the save conversion process
@@ -38,6 +38,26 @@ def check_progress(progressbar):
         # Check again after 1000ms if the extractor is done
         window.after(1000, check_progress, progressbar)
 
+def check_for_zip_files():
+    if not find_zip_files("./"):
+        print("Fetching zip files from local directory...")
+        threading.Thread(target=run_save_extractor, daemon=True).start()
+    else:
+        process_zip_files()
+
+def process_zip_files():
+    if is_folder_empty("./saves"):
+
+        zip_files = find_zip_files("./")
+        print(zip_files)
+
+        if (zip_files):
+            unzip_file(zip_files[0], "./saves")
+            save_extractor_done.set()
+        else:
+            print("No save files found on XGP please reinstall the game on XGP and try again")
+            window.quit()
+
 def convert_save_files(progressbar):
 
     saveFolders = list_folders_in_directory("./saves")
@@ -45,8 +65,6 @@ def convert_save_files(progressbar):
     if not saveFolders:
         print("No save files found")
         
-        window.quit()
-        exit()
         return
     
     print(saveFolders)
@@ -84,27 +102,13 @@ def run_save_extractor():
     try:
         subprocess.run(command, check=True)
         print("Command executed successfully")
-        save_extractor_done.set() 
+        process_zip_files()
 
     except subprocess.CalledProcessError as e:
         print(f"Error executing command: {e}")
         return None
     
      # Signal that SaveExtractor is done
-
-def check_for_zip_files():
-    if not find_zip_files("./"):
-        print("Fetching zip files from local directory...")
-        threading.Thread(target=run_save_extractor, daemon=True).start()
-    else:
-        process_zip_files()
-        save_extractor_done.set()
-
-def process_zip_files():
-    if is_folder_empty("./saves"):
-        zip_files = find_zip_files("./")
-        print(zip_files)
-        unzip_file(zip_files[0], "./saves")
 
 def list_folders_in_directory(directory):
     """Lists all folders in the given directory."""
@@ -229,7 +233,7 @@ def move_save_steam(saveName):
         print(f"Detected target folder: {target_folder}")
         source_folder = os.path.join("./saves", saveName)
 
-        shutil.copytree(source_folder, target_folder, dirs_exist_ok=True)
+        shutil.copytree(source_folder, target_folder + "/" + saveName, dirs_exist_ok=True)
         print(f"Save folder copied to {target_folder}")
         
         messagebox.showinfo("Success", f"Your save is migrated to your Steam game. Launch your game through Steam")
