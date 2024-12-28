@@ -1,6 +1,6 @@
 # Game Pass save to Steam easy converter
 
-Important: I don't code in python and I don't play Palworld. My wife needed to convert her save file so I did it. Be cool with me.
+Important: I don't code in python and I don't play Palworld. My wife needed to convert her save file so I did it. Please keep that in mind.
 
 This tool converts a Palworld save file in Xbox Game Pass to Steam in two clicks.
 
