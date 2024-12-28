@@ -6,7 +6,7 @@ Converts a Palworld save file from Xbox Game Pass to Steam in two clicks.
 
 1. Download the latest release from [here](https://github.com/rcioletti/lazy-palworld-save-converter/releases)
 2. Unzip the file to a folder and open **lazy_converter.exe**
-3. Click on **Get Saves** to fetch the data from Game Pass (this could take up to 10 minutes depending on how large your save file is)
+3. Click on **Get Saves** to fetch the data from Game Pass (this could take up to 10 minutes depending on how large your save files are)
 4. Select the Save file you want to convert and click on **Convert Save**
 5. Open your game and check your saves.
 
