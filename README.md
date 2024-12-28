@@ -1,6 +1,6 @@
-# XGP to Steam save easy converter
+# Game Pass save to Steam save easy converter
 
-Converts the save file from Xbox Game Pass to Steam in a very easy and user friendly UI
+Converts a Palworld save file from Xbox Game Pass to Steam in two clicks.
 
 ### Instructions
 
@@ -13,6 +13,9 @@ Converts the save file from Xbox Game Pass to Steam in a very easy and user frie
 ### Troubleshooting
 
 > If you face any problems delete everything from _./saves_ folder and the ZIP file on the root folder and try again. Also delete any ZIP files that does not have the prefix "palworld\_"
+
+### Compatibility
+0.3.12 ✅
 
 ### Donation
 If you like it pay me a [coffee](https://ko-fi.com/lazy7)
