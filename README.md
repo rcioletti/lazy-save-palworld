@@ -1,4 +1,4 @@
-# Game Pass save to Steam save easy converter
+# Game Pass save to Steam easy converter
 
 Converts a Palworld save file from Xbox Game Pass to Steam in two clicks.
 
