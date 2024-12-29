@@ -1,8 +1,8 @@
-# Game Pass save to Steam easy converter
+# Game Pass save to Steam easy transfer
 
-Important: I don't code in python and I don't play Palworld. My wife needed to convert her save file so I did it. Please keep that in mind.
+Important: I don't code in Python and I don't play Palworld. My wife needed to transfer her save file so I did it. Please keep that in mind.
 
-This tool converts a Palworld save file in Xbox Game Pass to Steam in two clicks.
+This tool transfers a Palworld save file in Xbox Game Pass to Steam in two clicks.
 
 ### Instructions
 
@@ -12,13 +12,17 @@ This tool converts a Palworld save file in Xbox Game Pass to Steam in two clicks
 
 ![Screenshot 2024-12-29 005541](https://github.com/user-attachments/assets/ecd8bf90-fed8-4dc7-bd18-b8ec515bc931)
 
-5. Select the save file you want to convert then click on **Convert Save**
-6. Open your game and check your saves.
+5. Select the save file you want to transfer then click on **Convert Save**
+
+![Screenshot 2024-12-29 020457](https://github.com/user-attachments/assets/631c2308-a8c5-4271-b973-589504605006)
+
+
+7. Open your game and check your saves.
 
 ### Troubleshooting
 
 > Delete everything inside _./saves_ folder and delete the ZIP file in the root folder.\
-> Delete any ZIP files that doesn't have the prefix "palworld\_".\
+> Delete any ZIP files that don't have the prefix "palworld\_".\
 > Run **lazy_converter.exe** as Admin
 
 ### Compatibility
